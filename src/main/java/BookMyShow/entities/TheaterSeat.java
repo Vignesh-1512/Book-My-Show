@@ -1,8 +1,7 @@
 package BookMyShow.entities;
 
-import BookMyShow.Enums.SeatType;
+import BookMyShow.enums.SeatType;
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.*;
 
 @Entity

@@ -1,6 +1,5 @@
-package BookMyShow.RequestDtos;
+package BookMyShow.requestDtos;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Getter;
 import lombok.Setter;
 

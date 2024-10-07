@@ -1,9 +1,10 @@
 package BookMyShow.services;
 
-import BookMyShow.Enums.SeatType;
-import BookMyShow.Exceptions.ShowExistException;
-import BookMyShow.RequestDtos.AddShowRequest;
-import BookMyShow.RequestDtos.AddShowSeatRequest;
+import BookMyShow.enums.SeatType;
+import BookMyShow.exceptions.ShowExistException;
+import BookMyShow.exceptions.ShowNotFoundException;
+import BookMyShow.requestDtos.AddShowRequest;
+import BookMyShow.requestDtos.AddShowSeatRequest;
 import BookMyShow.entities.*;
 import BookMyShow.repository.MovieRepository;
 import BookMyShow.repository.ShowRepository;
@@ -33,14 +34,12 @@ public class ShowService {
 
     public String addShow(AddShowRequest addShowRequest) throws ShowExistException
     {
-
-        //Show show= ShowTransformer.convertAddRequestToEntity(addShowRequest);
         Movie movie= movieRepository.findMovieByMovieName(addShowRequest.getMovieName());
 
         Optional<Theater> optionalTheater=theaterRepository.findById(addShowRequest.getTheaterId());
         if(!optionalTheater.isPresent())
         {
-            throw new RuntimeException("Teater not found");
+            throw new RuntimeException("Theater not found");
         }
         Theater theater=optionalTheater.get();
         Show existingShow=showRepository.findShowByShowDateAndShowTimeAndTheater(addShowRequest.getShowDate(),
@@ -101,5 +100,32 @@ public class ShowService {
         showRepository.save(show);
         return "The show seats have been added";
 
+    }
+
+    //UpdateCostOfShowByMovieId
+    public String updateCostOfShowById(AddShowSeatRequest addShowSeatRequest) throws ShowNotFoundException
+    {
+        Optional<Show> optionalShow=showRepository.findById(addShowSeatRequest.getShowId());
+
+        if(!optionalShow.isPresent())
+        {
+            throw new ShowNotFoundException("The mentioned show ID :"+addShowSeatRequest.getShowId()+" is not found");
+        }
+        Show show=optionalShow.get();
+        List<ShowSeat> ShowSeatList=show.getShowSeatList();
+
+        for (ShowSeat showSeat: ShowSeatList)
+        {
+            if(showSeat.getSeatType().equals(SeatType.CLASSIC))
+            {
+                showSeat.setCost(addShowSeatRequest.getPriceOfClassicSeats());
+            }
+            else if(showSeat.getSeatType().equals(SeatType.PREMIUM))
+            {
+                showSeat.setCost(addShowSeatRequest.getPriceOfPremiumSeats());
+            }
+        }
+        showRepository.save(show);
+        return "Show cost for show ID "+addShowSeatRequest.getShowId()+" have been updated";
     }
 }

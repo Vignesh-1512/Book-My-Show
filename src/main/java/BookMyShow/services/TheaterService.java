@@ -1,8 +1,8 @@
 package BookMyShow.services;
 
-import BookMyShow.Enums.SeatType;
-import BookMyShow.Exceptions.TheaterExistException;
-import BookMyShow.RequestDtos.AddTheaterRequest;
+import BookMyShow.enums.SeatType;
+import BookMyShow.exceptions.TheaterExistException;
+import BookMyShow.requestDtos.AddTheaterRequest;
 import BookMyShow.entities.Theater;
 import BookMyShow.entities.TheaterSeat;
 import BookMyShow.repository.TheaterRepository;
@@ -72,7 +72,7 @@ public class TheaterService {
             theaterSeatList.add(theaterSeat);
         }
 
-        //Similar numbering I will do for the Premium Seats :
+        //Similar numbering will do for the Premium Seats :
         ch = 'A';
         for(int i=1;i<=noOfPremiumSeats;i++) {
 
@@ -96,4 +96,7 @@ public class TheaterService {
         theater.setTheaterSeatList(theaterSeatList);
         theaterRepository.save(theater);
     }
+
+    //updateTheater - Put Mapping
+
 }

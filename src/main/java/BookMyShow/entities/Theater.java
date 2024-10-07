@@ -1,6 +1,6 @@
 package BookMyShow.entities;
 
-import BookMyShow.Enums.City;
+import BookMyShow.enums.City;
 import jakarta.persistence.*;
 import lombok.*;
 

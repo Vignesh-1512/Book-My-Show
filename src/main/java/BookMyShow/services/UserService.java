@@ -1,15 +1,14 @@
 package BookMyShow.services;
 
-import BookMyShow.Exceptions.UserExistException;
-import BookMyShow.RequestDtos.AddUserRequest;
-import BookMyShow.Transformers.UserTransformers;
+import BookMyShow.exceptions.UserExistException;
+import BookMyShow.requestDtos.AddUserRequest;
 import BookMyShow.entities.User;
 import BookMyShow.repository.UserRepository;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -27,7 +26,7 @@ public class UserService {
         User existingUser2=userRepository.getByMobile(addUserRequest.getMobile());
         if(existingUser2!=null)
         {
-            throw new UserExistException("User "+existingUser2.getName()+" already registered using this mobile num");
+            throw new UserExistException("User "+existingUser2.getName()+" already registered using this mobile number");
         }
         User user = new User();
         user.setName(addUserRequest.getName());
@@ -37,5 +36,17 @@ public class UserService {
         userRepository.save(user);
         return "User "+addUserRequest.getName()+" has been added";
     }
+
+    //getAllUsers
+    public List<AddUserRequest> getAllUser(){
+        List<User> userList=userRepository.findAll();
+        return userList.stream().map(user -> new AddUserRequest(
+                user.getName(),
+                user.getEmailId(),
+                user.getMobile(),
+                user.getAge()
+        )).collect(Collectors.toList());
+    }
+
 }
 

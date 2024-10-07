@@ -1,4 +1,4 @@
-package BookMyShow.Enums;
+package BookMyShow.enums;
 
 public enum Genre {
 

@@ -1,6 +1,6 @@
 package BookMyShow.services;
 
-import BookMyShow.Exceptions.TicketBookedException;
+import BookMyShow.exceptions.TicketBookedException;
 import BookMyShow.entities.Movie;
 import BookMyShow.entities.Show;
 import BookMyShow.entities.ShowSeat;
@@ -12,7 +12,7 @@ import BookMyShow.repository.ShowRepository;
 import BookMyShow.repository.TheaterRepository;
 import BookMyShow.repository.TicketRepository;
 import BookMyShow.repository.UserRepository;
-import BookMyShow.RequestDtos.BookTicketRequest;
+import BookMyShow.requestDtos.BookTicketRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,16 +69,6 @@ public class TicketServices {
             throw new TicketBookedException("The following seats are already booked or do not exist: " + String.join(", ", unavailableSeats));
         }
 
-//        for(ShowSeat showSeat:showSeatList) {
-//
-//            if(bookTicketRequest.getRequestedSeatNos().contains(showSeat.getSeatNo()) && showSeat.isAvailable()) {
-//
-//                // Mark the seat as not available and add the cost to the total
-//                showSeat.setAvailable(false);
-//                totalPrice = totalPrice + showSeat.getCost();
-//            }
-//        }
-
         User user = userRepository.findById(bookTicketRequest.getUserId()).get();
 
         Ticket ticket = Ticket.builder()
@@ -99,7 +89,7 @@ public class TicketServices {
         ticketRepository.save(ticket);
 
 
-        return "Ticket has been Successfullly booked";
+        return "Ticket has been Successfully booked";
 
         //Calculate total Price
 
@@ -124,4 +114,7 @@ public class TicketServices {
         return show;
     }
 
+    //getTicketsBookedByUser
+
+    //TotalCostOfTicketsSold
 }

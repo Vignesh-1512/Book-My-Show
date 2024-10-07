@@ -1,14 +1,12 @@
 package BookMyShow.controllers;
 
-import BookMyShow.Exceptions.ShowExistException;
-import BookMyShow.RequestDtos.AddShowRequest;
-import BookMyShow.RequestDtos.AddShowSeatRequest;
+import BookMyShow.exceptions.ShowExistException;
+import BookMyShow.exceptions.ShowNotFoundException;
+import BookMyShow.requestDtos.AddShowRequest;
+import BookMyShow.requestDtos.AddShowSeatRequest;
 import BookMyShow.services.ShowService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("show")
@@ -33,5 +31,16 @@ public class Showcontroller {
     public String enableShowSeats(@RequestBody AddShowSeatRequest addShowSeatRequest)
     {
         return showService.createShowSeats(addShowSeatRequest);
+    }
+
+    @PutMapping("/updateCost")
+    public String updateShowCost(@RequestBody AddShowSeatRequest addShowSeatRequest) {
+        try {
+            return showService.updateCostOfShowById(addShowSeatRequest);
+        }
+        catch (ShowNotFoundException e)
+        {
+            return e.getMessage();
+        }
     }
 }

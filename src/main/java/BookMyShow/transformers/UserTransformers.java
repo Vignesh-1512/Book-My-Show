@@ -1,6 +1,6 @@
-package BookMyShow.Transformers;
+package BookMyShow.transformers;
 
-import BookMyShow.RequestDtos.AddUserRequest;
+import BookMyShow.requestDtos.AddUserRequest;
 import BookMyShow.entities.User;
 
 public class UserTransformers {

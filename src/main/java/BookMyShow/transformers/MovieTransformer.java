@@ -1,6 +1,6 @@
-package BookMyShow.Transformers;
+package BookMyShow.transformers;
 
-import BookMyShow.RequestDtos.AddMovieRequest;
+import BookMyShow.requestDtos.AddMovieRequest;
 import BookMyShow.entities.Movie;
 
 public class MovieTransformer {

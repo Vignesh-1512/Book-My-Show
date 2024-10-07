@@ -1,6 +1,6 @@
-package BookMyShow.RequestDtos;
+package BookMyShow.requestDtos;
 
-import BookMyShow.Enums.Genre;
+import BookMyShow.enums.Genre;
 import lombok.*;
 
 import java.time.LocalDate;

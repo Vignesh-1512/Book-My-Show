@@ -1,15 +1,13 @@
 package BookMyShow.controllers;
 
-import BookMyShow.Exceptions.UserExistException;
-import BookMyShow.RequestDtos.AddUserRequest;
 import BookMyShow.entities.User;
+import BookMyShow.exceptions.UserExistException;
+import BookMyShow.requestDtos.AddUserRequest;
 import BookMyShow.services.UserService;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -40,11 +38,11 @@ public class UserController {
 //        return userService.update(id,updatedUser);
 //    }
 //
-//    @GetMapping("/getAll")
-//    public List<User> list()
-//    {
-//        return  userService.list();
-//    }
+    @GetMapping("/getAll")
+    public List<AddUserRequest> getAllUser()
+    {
+        return  userService.getAllUser();
+    }
 //
 //    @DeleteMapping("/delete/{id}")
 //    public String delete(@PathVariable Integer id)

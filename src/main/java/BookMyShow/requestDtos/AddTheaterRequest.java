@@ -1,6 +1,6 @@
-package BookMyShow.RequestDtos;
+package BookMyShow.requestDtos;
 
-import BookMyShow.Enums.City;
+import BookMyShow.enums.City;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,7 @@
 package BookMyShow.controllers;
 
-import BookMyShow.Exceptions.TicketBookedException;
-import BookMyShow.RequestDtos.BookTicketRequest;
+import BookMyShow.exceptions.TicketBookedException;
+import BookMyShow.requestDtos.BookTicketRequest;
 import BookMyShow.services.TicketServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

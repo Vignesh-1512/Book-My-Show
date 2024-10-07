@@ -1,4 +1,4 @@
-package BookMyShow.RequestDtos;
+package BookMyShow.requestDtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

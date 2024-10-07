@@ -1,6 +1,6 @@
-package BookMyShow.Transformers;
+package BookMyShow.transformers;
 
-import BookMyShow.RequestDtos.AddShowRequest;
+import BookMyShow.requestDtos.AddShowRequest;
 import BookMyShow.entities.Show;
 
 public class ShowTransformer {
